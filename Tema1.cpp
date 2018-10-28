@@ -1,6 +1,7 @@
 #include "Tema1.h"
 #include "DrawRect.h"
 #include "DrawCircle.h"
+#include "Transform2D.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -85,10 +86,13 @@ void Tema1::FrameEnd()
 {
 
 }
-
+float ty = 0, tx = 0, platfx = 0, platfy = 0;
+short ok_space = 1;
 
 void Tema1::Update(float deltaTimeSeconds) {
 	modelMatrix = glm::mat3(1);
+	std::cout << ok_space;
+	
 	
 	RenderMesh2D(meshes["LeftWall"], shaders["VertexColor"], modelMatrix);
 	RenderMesh2D(meshes["Ceiling"], shaders["VertexColor"], modelMatrix);
@@ -103,8 +107,21 @@ void Tema1::Update(float deltaTimeSeconds) {
 		}
 	}
 
+	modelMatrix *= Transform2D::Translate(platfx, 0);
+
 	RenderMesh2D(meshes["Platform"], shaders["VertexColor"], modelMatrix);
+
+	modelMatrix = glm::mat3(1);
+	if (ok_space == 0)
+	{
+		tx += deltaTimeSeconds * 100;
+		ty += deltaTimeSeconds * 100;
+	}
+	modelMatrix *= Transform2D::Translate(tx, ty);
+
 	RenderMesh2D(meshes["Ball"], shaders["VertexColor"], modelMatrix);
+
+	modelMatrix = glm::mat3(1);
 	RenderMesh2D(meshes["life1"], shaders["VertexColor"], modelMatrix);
 	RenderMesh2D(meshes["life2"], shaders["VertexColor"], modelMatrix);
 	RenderMesh2D(meshes["life3"], shaders["VertexColor"], modelMatrix);
@@ -113,11 +130,26 @@ void Tema1::Update(float deltaTimeSeconds) {
 
 void Tema1::OnInputUpdate(float deltaTime, int mods){};
 
-void Tema1::OnKeyPress(int key, int mods){};
+void Tema1::OnKeyPress(int key, int mods)
+{
+	if (key == GLFW_KEY_SPACE)
+	{
+		ok_space = 0;
+	}
+		
+
+};
 
 void Tema1::OnKeyRelease(int key, int mods){};
 
-void Tema1::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY){};
+void Tema1::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY)
+{
+	modelMatrix = glm::mat3(1);
+	if (ok_space == 1)
+		tx += deltaX;
+	platfx += deltaX;
+	//cout << mouseX << ' ' << mouseY << ' ' << deltaX << ' ' << deltaY;
+};
 
 void Tema1::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods){};
 
