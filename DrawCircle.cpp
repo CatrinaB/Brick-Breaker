@@ -5,7 +5,7 @@
 
 const float PI = 3.1415926535;
 
-Mesh* DrawCircle::CreateCircle(std::string name, float radius, float coordx, float coordy, glm::vec3 color)
+Mesh* DrawCircle::CreateCircle(std::string name, glm::vec3 center, float radius, glm::vec3 color)
 {
 	std::vector<VertexFormat> vertices;
 	std::vector<unsigned short> indices;
@@ -18,8 +18,8 @@ Mesh* DrawCircle::CreateCircle(std::string name, float radius, float coordx, flo
 	for (int i = 0; i < 360; i++)
 	{
 		float angle = i * 2 * rad;
-		x = cos(angle) * radius + coordx;
-		y = sin(angle) * radius + coordy;
+		x = cos(angle) * radius + center[0];
+		y = sin(angle) * radius + center[1];
 
 		vertices.push_back(VertexFormat(glm::vec3(x, y, 0), color));
 		indices.push_back(i);

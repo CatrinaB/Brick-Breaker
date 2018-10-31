@@ -7,5 +7,5 @@
 
 namespace DrawCircle
 {	
-	Mesh* CreateCircle(std::string name, float radius, float coordx, float coordy, glm::vec3 color);
+	Mesh* CreateCircle(std::string name, glm::vec3 center, float radius, glm::vec3 color);
 }
