@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Component/SimpleScene.h>
+#include "Brick.h"
 
 class Tema1 : public SimpleScene
 {
@@ -14,6 +15,7 @@ class Tema1 : public SimpleScene
 		void FrameStart() override;
 		void Update(float deltaTimeSeconds) override;
 		void FrameEnd() override;
+		void Tema1::DestroyBrick(Brick brick);
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;

@@ -14,4 +14,15 @@ namespace Transform2D
 			)
 		);
 	}
+
+	inline glm::mat3 Scale(float scaleX, float scaleY)
+	{
+		return glm::transpose(
+			glm::mat3(
+				scaleX, 0, 0,
+				0, scaleY, 0,
+				0, 0, 1
+			)
+		);
+	}
 }
