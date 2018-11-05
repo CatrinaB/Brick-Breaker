@@ -1,23 +1,15 @@
 #include "Collision2D.h"
 #include "Brick.h"
+#include "DrawRect.h"
 #include <iostream>
 #include <vector>
 #include <include/glm.h>
+#include <Component/SimpleScene.h>
 
 #include <Core/Engine.h>
 
-//struct brick {
-//	std::string name;
-//	float x_left_coord;
-//	float x_right_coord;
-//	float y_lower_coord;
-//	float y_upper_coord;
-//	short level;
-//};
-
 short Collision2D::WallCollision(glm::vec3 center, float walls[3], bool shield)
 {
-	//std::cout << center[1] << "\nwall" << walls[1] << '\n';
 	if (((center[0] - 10) <= walls[0] || (center[0] + 10) >= walls[2]) && (center[1] + 20) < walls[1])
 		return 1;
 
@@ -35,7 +27,6 @@ short Collision2D::WallCollision(glm::vec3 center, float walls[3], bool shield)
 
 short Collision2D::PlatformCollision(glm::vec3 center, float platfx, float platflength)
 {
-	//std::cout << center[1] << ' ' << center[0] << ' ' << (platfx - platflength/2) << ' ' << (platfx + platflength/2) << '\n';
 	if ((center[1] <= 5 && center[0] >= (platfx - platflength/2)) && (center[0] <= (platfx + platflength/2)))
 		return 1;
 	return 0;

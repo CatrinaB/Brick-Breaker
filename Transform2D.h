@@ -25,4 +25,15 @@ namespace Transform2D
 			)
 		);
 	}
+
+	inline glm::mat3 Rotate(float radians)
+	{
+		return glm::transpose(
+			glm::mat3(
+				cos(radians), -sin(radians), 0,
+				sin(radians), cos(radians), 0,
+				0, 0, 1
+			)
+		);
+	}
 }

@@ -13,9 +13,10 @@ class Tema1 : public SimpleScene
 
 	private:
 		void FrameStart() override;
+		void LengthPowerUp(float deltaTimeSeconds, char &scale_position);
 		void Update(float deltaTimeSeconds) override;
 		void FrameEnd() override;
-		void Tema1::DestroyBrick(Brick brick);
+		//void Tema1::DestroyBrick(Brick brick);
 
 		void OnInputUpdate(float deltaTime, int mods) override;
 		void OnKeyPress(int key, int mods) override;
